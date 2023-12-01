@@ -8,7 +8,7 @@
 本模块不建议用户使用`go get ...`进行安装，而是将`sensitivecheck`文件夹引入自己的项目中，然后在调用`MsgCheck`或`MsgCheckFilter`前保证初始化过前缀树，即调用`Init()`方法。
 
 ## 功能测试
-1. checkout本项目，运行`main.go`中的main函数，你将看到控制台输出结果。
+1. checkout本项目，运行`main.go`中的`main()`函数，你将看到控制台输出结果。
 ```
 敏感词检查缓存文件 sensitiveCache.bin 打开失败, 重新加载敏感词检测树并保存 open sensitiveCache.bin: The system cannot find the file specified. 
 从源文件 sensitive.txt 中读取敏感词成功
@@ -24,7 +24,7 @@
 使用过滤敏感词为*号，来检测内容：你好
 结果为:  true 你好
 ```
-2. 可以看到文件夹目录下出现`sensitiveCache.bin`文件，这个文件是敏感词树的缓存文件。再次运行main函数时，系统会从缓存文件中读取敏感词，将输出：
+2. 可以看到文件夹目录下出现`sensitiveCache.bin`文件，这个文件是敏感词树的缓存文件。再次运行`main()`函数时，系统会从缓存文件中读取敏感词，将输出：
 ```
 sensitive.txt MD5 checksum is 2cbc81470cc9949e55380b735e2e84af 
 从缓存文件 sensitiveCache.bin 中读取敏感词文件 成功
@@ -56,4 +56,6 @@ sensitive.txt MD5 checksum is 2cbc81470cc9949e55380b735e2e84af
 
 使⽤TrieTree字典前缀树，将敏感词逐条遍历，构造⼀棵字典树。然后再将要检测的句⼦，遍历句⼦中 的每⼀个字，以这个字为开头到末尾，作为要检测的字符串，与字典树进⾏匹配。如找到字典树节点为敏感词结束节点，则命中敏感词。
 参考：https://zhuanlan.zhihu.com/p/451564063
+
+项目依赖`goframe`的`gbinary`库，是在生成缓存文件时，将内存中的数据转成二进制时使用。你可以自己换成相同功能的库或者函数。
 
