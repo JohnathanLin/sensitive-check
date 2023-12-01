@@ -8,6 +8,7 @@ import (
 func main() {
 	// 初始化敏感词检测树
 	sensitivecheck.Init()
+
 	fmt.Println("使用判断敏感词是否存在，来检测内容：科比")
 	res := sensitivecheck.MsgCheck("科比")
 	fmt.Println("结果为: ", res)
